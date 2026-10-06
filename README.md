@@ -1,7 +1,7 @@
 # sqllogic-ztests
 
 This repository is a collection of
-[ztests](https://github.com/brimdata/super/blob/main/ztest/ztest.go)
+[ztests](https://github.com/superdb/super/blob/main/ztest/ztest.go)
 that contain queries derived from
 [sqllogictest](https://sqlite.org/sqllogictest/doc/trunk/about.wiki)
 scripts. They're intended primarily for use as
@@ -14,7 +14,7 @@ Currently all tests in this repo are based on the sqllogictests from
 ## Usage
 
 Checkout this repo as a sibling directory alongside your checkout of the
-[super repo](https://github.com/brimdata/super), e.g.:
+[super repo](https://github.com/superdb/super), e.g.:
 
 ```
 $HOME/sqllogic-ztests
@@ -56,7 +56,7 @@ SuperDB versions and are executed nightly via a
 regressions. Queries known to fail in recent SuperDB versions are held in
 files ending in `.fail` and are skipped in the nightly CI run. Each `.fail`
 file contains a comment describing the root cause of the failure, which is
-typically a link to one of the open [issues in the super repo](https://github.com/brimdata/super/issues).
+typically a link to one of the open [issues in the super repo](https://github.com/superdb/super/issues).
 
 As SuperDB does not yet support SQL [DDL](https://en.wikipedia.org/wiki/Data_definition_language)
 or [DML](https://en.wikipedia.org/wiki/Data_manipulation_language),
@@ -77,8 +77,8 @@ make -C super build
 
 This is a temporary fix to produce TSV output from `super` that is `diff`-able
 against the expected sqllogictest outputs. Patching will not be necessary once
-[super/5961](https://github.com/brimdata/super/issues/5961) and
-[super/6381](https://github.com/brimdata/super/issues/6381) are addressed.
+[super/5961](https://github.com/superdb/super/issues/5961) and
+[super/6381](https://github.com/superdb/super/issues/6381) are addressed.
 
 ## Improving Git Performance
 

@@ -1,4 +1,4 @@
-module github.com/brimdata/sqllogic-ztests
+module github.com/superdb/sqllogic-ztests
 
 go 1.27
 
