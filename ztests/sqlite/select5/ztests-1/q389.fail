@@ -1,4 +1,4 @@
-# Failed due to: https://github.com/brimdata/super/issues/6074
+# Failed due to: https://github.com/superdb/super/issues/6074
 script: |
   super -i parquet -f tsv -I q389.sql | tr '\t' '\n' | sort > q389.out
 
