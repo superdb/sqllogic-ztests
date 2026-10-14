@@ -1,4 +1,4 @@
-# Failed due to: https://github.com/brimdata/super/issues/6536
+# Failed due to: https://github.com/superdb/super/issues/6536
 script: |
   super -i parquet -f tsv -I q3287.sql | sort > q3287.out
 

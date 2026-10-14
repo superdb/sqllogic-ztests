@@ -1,0 +1,75 @@
+script: |
+  super -i parquet -f tsv -I q205.sql | tr '\t' '\n' | sort > q205.out
+
+inputs:
+  - name: q205.sql
+    data: |
+      SELECT x55,x47,x16,x20,x5,x13,x60,x8,x37,x43,x27,x33,x45,x30,x57,x25,x10,x61,x48,x12,x56
+      FROM t10,t57,t43,t33,t5,t13,t45,t20,t55,t60,t61,t16,t47,t25,t27,t8,t37,t48,t12,t56,t30
+      WHERE a27=b25
+      AND a45=b37
+      AND a57=b43
+      AND a43=b47
+      AND a33=4
+      AND b5=a56
+      AND b8=a5
+      AND a25=b57
+      AND a55=b60
+      AND a16=b13
+      AND b27=a61
+      AND a47=b45
+      AND b20=a60
+      AND a33=b16
+      AND b48=a10
+      AND b12=a30
+      AND b10=a20
+      AND a8=b55
+      AND a37=b56
+      AND a13=b30
+      AND b61=a12;
+  - name: t10
+  - name: t12
+  - name: t13
+  - name: t16
+  - name: t20
+  - name: t25
+  - name: t27
+  - name: t30
+  - name: t33
+  - name: t37
+  - name: t43
+  - name: t45
+  - name: t47
+  - name: t48
+  - name: t5
+  - name: t55
+  - name: t56
+  - name: t57
+  - name: t60
+  - name: t61
+  - name: t8
+
+outputs:
+  - name: q205.out
+    data: |
+      table t10 row 9
+      table t12 row 6
+      table t13 row 9
+      table t16 row 3
+      table t20 row 6
+      table t25 row 1
+      table t27 row 7
+      table t30 row 7
+      table t33 row 4
+      table t37 row 8
+      table t43 row 9
+      table t45 row 2
+      table t47 row 4
+      table t48 row 2
+      table t5 row 10
+      table t55 row 10
+      table t56 row 6
+      table t57 row 9
+      table t60 row 2
+      table t61 row 10
+      table t8 row 2
