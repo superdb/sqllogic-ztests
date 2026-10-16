@@ -1,8 +1,8 @@
 diff --git a/sio/csvio/writer.go b/sio/csvio/writer.go
-index 1e5626e6e..5c5ebf954 100644
+index 617d38f..d6ab16b 100644
 --- a/sio/csvio/writer.go
 +++ b/sio/csvio/writer.go
-@@ -40,7 +40,7 @@ func NewWriter(w io.WriteCloser, opts WriterOpts) *Writer {
+@@ -42,7 +42,7 @@ func NewWriter(w io.WriteCloser, opts WriterOpts) *Writer {
  		writer:    w,
  		encoder:   encoder,
  		flattener: expr.NewFlattener(super.NewContext()),
@@ -11,12 +11,15 @@ index 1e5626e6e..5c5ebf954 100644
  		types:     make(map[int]struct{}),
  	}
  }
-@@ -94,6 +94,8 @@ func (w *Writer) Write(rec super.Value) error {
- 			case id == super.IDString:
- 				s = string(val.Bytes())
- 			case id == super.IDNull:
-+				// NULL value - render as "NULL"
-+				s = "NULL"
- 			default:
- 				s = formatValue(val.Type(), val.Bytes())
- 				if super.IsFloat(id) && strings.HasSuffix(s, ".") {
+@@ -99,7 +99,10 @@ func (w *Writer) Write(rec super.Value) error {
+ 			// We want "" instead of "0x" for a zero-length value.
+ 		case id == super.IDString:
+ 			s = string(val.Bytes())
+-		case id == super.IDNull || id == super.IDNone:
++		case id == super.IDNull:
++			// NULL value - render as "NULL"
++			s = "NULL"
++		case id == super.IDNone:
+ 		default:
+ 			s = formatValue(val.Type(), val.Bytes())
+ 			if super.IsFloat(id) && strings.HasSuffix(s, ".") {
