@@ -1,8 +1,8 @@
 diff --git a/sio/csvio/writer.go b/sio/csvio/writer.go
-index 617d38f..d6ab16b 100644
+index 3a41974..dfccf75 100644
 --- a/sio/csvio/writer.go
 +++ b/sio/csvio/writer.go
-@@ -42,7 +42,7 @@ func NewWriter(w io.WriteCloser, opts WriterOpts) *Writer {
+@@ -41,7 +41,7 @@ func NewWriter(w io.WriteCloser, opts WriterOpts) *Writer {
  		writer:    w,
  		encoder:   encoder,
  		flattener: expr.NewFlattener(super.NewContext()),
@@ -11,15 +11,15 @@ index 617d38f..d6ab16b 100644
  		types:     make(map[int]struct{}),
  	}
  }
-@@ -99,7 +99,10 @@ func (w *Writer) Write(rec super.Value) error {
+@@ -100,7 +100,10 @@ func (w *Writer) Write(rec super.Value) error {
  			// We want "" instead of "0x" for a zero-length value.
  		case id == super.IDString:
  			s = string(val.Bytes())
--		case id == super.IDNull || id == super.IDNone:
+-		case id == super.IDNull || id == super.IDMissing:
 +		case id == super.IDNull:
 +			// NULL value - render as "NULL"
 +			s = "NULL"
-+		case id == super.IDNone:
- 		default:
- 			s = formatValue(val.Type(), val.Bytes())
- 			if super.IsFloat(id) && strings.HasSuffix(s, ".") {
++		case id == super.IDMissing:
+ 		case id < super.IDTypeComplex:
+ 			// Avoid SUP decoration.
+ 			s = sup.FormatPrimitive(val.Type(), val.Bytes())
